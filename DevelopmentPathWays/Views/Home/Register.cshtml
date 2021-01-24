@@ -1,0 +1,204 @@
+﻿@using DevelopmentPathWays.Models
+@model UsersModel
+@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/developmentpathways-logo.png">
+    <title>Development Pathways</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="page-wrapper job-wrapper">
+            <div class="content container" style="width:100%">
+                <center><h3>Account Creation Request Form</h3></center>
+                @if (TempData["error"] != null)
+                {
+
+                    <div class="alert alert-danger" id="alert-success" role="alert">
+                        @TempData["error"]
+                    </div>
+
+                }
+                else if (TempData["success"] != null)
+                {
+                    <div class="alert alert-success" id="alert-success" role="alert">
+                        @TempData["success"]
+                    </div>
+                }
+                <div class="row">
+                    <div class="panel-body">
+                        <div id="feedback" style="display: none;background-color:antiquewhite"></div>
+                    @using (Html.BeginForm("Register", "Home", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">UserName: <span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(m => m.UserName, "", new { @class = "form-control floating", @placeholder = "UserName" })
+                                    @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">Surname: <span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(m => m.LastName, "", new { @class = "form-control floating", @placeholder = "LastName" })
+                                    @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">Firstname: <span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(m => m.FirstName, "", new { @class = "form-control floating", @placeholder = "FirstName" })
+                                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">Other Names: <span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(m => m.MiddleName, "", new { @class = "form-control floating", @placeholder = "Other Names" })
+                                    @Html.ValidationMessageFor(m => m.MiddleName, "", new { @class = "text-danger" })
+                                 </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">Password: <span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(m => m.Password, "", new { @class = "form-control floating", @placeholder = "Password" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "badge badge-danger" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">Confirm Password: <span class="text-danger">*</span></label>
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confim Password" })
+                                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">County : <span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(m => m.County, "", new { @class = "form-control floating", @placeholder = "County" })
+                                    @Html.ValidationMessageFor(m => m.County, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">Country: <span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(m => m.Country, "", new { @class = "form-control floating", @placeholder = "Country" })
+                                    @Html.ValidationMessageFor(m => m.Country, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">Primary Email Address : <span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(m => m.EmailAddress, "", new { @class = "form-control floating", @placeholder = "Email Address" })
+                                    @Html.ValidationMessageFor(m => m.EmailAddress, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">Post Codes : <span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(m => m.PostCode, "", new { @class = "form-control floating", @placeholder = "Post Codes" })
+                                    @Html.ValidationMessageFor(m => m.PostCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Address : <span class="text-danger">*</span></label>
+                                        @Html.TextBoxFor(m => m.Address, "", new { @class = "form-control floating", @placeholder = "Address" })
+                                        @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <center>
+                                    <div id="loader" style="display:none" class="modal">
+                                        <img src="~/assets/img/ajax-loader.gif" />
+                                    </div>
+                                </center>
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-6">
+                                        <a href="/Home/Login" class="btn btn-success">
+                                            Login
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6">
+                                        <button class="btn btn-primary pull-right ladda-button btn_candidateregister" id="btn_candidateregister" name="btn_candidateregister" type="submit" onclick="spinner()" data-style="slide-right" data-background-color="darkgreen">
+                                            <span class="ladda-label">
+                                                Submit Registration
+                                            </span>
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+    <div class="sidebar-overlay" data-reff="#sidebar"></div>
+    <script type="text/javascript" src="~/assets/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="~/assets/js/select2.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/moment.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/app.js"></script>
+    <!-- Sweet Alert Js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('form').submit(function () {
+                if (!someValidations()) {
+                    return false;
+                } else {
+                    $('form #loader').show();
+                }
+                return true;
+            });
+
+            function someValidations() {
+                return true;
+            }
+
+        });
+    </script>
+</body>
+</html>
+

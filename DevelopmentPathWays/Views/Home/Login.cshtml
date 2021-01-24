@@ -1,0 +1,105 @@
+﻿@using DevelopmentPathWays.Models
+@model UsersModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/developmentpathways-logo.png">
+    <title>Students Management System</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="account-page">
+            <div class="container">
+                <h3 class="account-title">User Login</h3>
+                <div class="account-box" style="width:650px;">
+                    <div class="account-wrapper">
+                        <div class="account-logo">
+                            <a href="index.html"><img src="~/assets/img/developmentpathways-logo.png" style="width:300px"></a>
+                        </div>
+                        @if (TempData["error"] != null)
+                        {
+
+                            <div class="alert alert-danger" id="alert-success" role="alert">
+                                @TempData["error"]
+                            </div>
+
+                        }
+                        else if (TempData["success"] != null)
+                        {
+                            <div class="alert alert-success" id="alert-success" role="alert">
+                                @TempData["success"]
+                            </div>
+                        }
+                     @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                     {
+                        @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <label class="control-label">Enter Valid Username or Email</label>
+                                @Html.TextBoxFor(m => m.EmailAddress, "", new { @class = "form-control floating", @placeholder = "Email"})
+                                 @Html.ValidationMessageFor(m => m.EmailAddress, "", new { @class = "badge badge-danger" })
+                              </div>
+                            <div class="form-group">
+                                <label class="control-label">Enter Valid Password</label>
+                                @Html.TextBoxFor(m => m.Password, "", new { @class = "form-control floating", @placeholder = "Password",@type="password" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "badge badge-danger" })
+                            </div>
+                            <div class="form-group text-center">
+                                <button class="btn btn-primary btn-block account-btn" type="submit">Login</button>
+                            </div>
+                            <center>
+                                <div id="loader" style="display:none" class="modal">
+                                    <img src="~/assets/img/ajax-loader.gif" />
+                                </div>
+                            </center>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="text-center">
+                                        <a href="/Home/Register">Don't have an account yet?<strong>Register</strong></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-center">
+                                        <a href="/Home/ResetPassword"><strong>Forgot your password?</strong></a>
+                                    </div>
+                                </div>
+                            </div>
+                         }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-overlay" data-reff="#sidebar"></div>
+    <script type="text/javascript" src="~/assets/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/app.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('form').submit(function () {
+                if (!someValidations()) {
+                    return false;
+                } else {
+                    $('form #loader').show();
+                }
+                return true;
+            });
+
+            function someValidations() {
+                return true;
+            }
+
+        });
+    </script>
+</body>
+</html>

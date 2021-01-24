@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DevelopmentPathWays.Models.DepartmentModel>
+@{
+    ViewBag.Title = "DepartmentsList";
+}
+
+<div class="content container-fluid">
+    <div class="row">
+        <div class="col-xs-4">
+            <h4 class="page-title">Departments Management</h4>
+        </div>
+        <div class="col-xs-8 text-right m-b-30">
+            <a href="/Home/AddNewEmployee" class="btn btn-primary pull-right rounded"><i class="fa fa-plus"></i> Add New Departments</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-striped custom-table datatable">
+                    <thead>
+                        <tr>
+                            <th>Department No</th>
+                            <th>Department Name</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>@item.DepartmentCode</td>
+                                <td>@item.DepartmentName</td>
+                                <td>
+                                  <a href="@Url.Action("UpdateDepartmentDetails", "Home", new { id = @item.DepartmentId })" class="btn btn-success" )"><i class="fa fa-pencil"></i> Edit</a>
+                                <td>
+                                    <a href="@Url.Action("DeleteDepartments", "Home", new { id = @item.DepartmentId })" class="btn btn-danger" )"><i class="fa fa-trash m-r-10"></i> Delete</a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@using DevelopmentPathWays.Models
+@model DepartmentModel
+
+@{
+    ViewBag.Title = "Departments";
+}
+
+<div class="content container-fluid">
+    @if (TempData["error"] != null)
+    {
+
+        <div class="alert alert-danger" id="alert-success" role="alert">
+            @TempData["error"]
+        </div>
+
+    }
+    else if (TempData["success"] != null)
+    {
+        <div class="alert alert-success" id="alert-success" role="alert">
+            @TempData["success"]
+        </div>
+    }
+    <div class="modal-body">
+        @using (Html.BeginForm("Departments", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Department Code <span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.DepartmentCode, "", new { @class = "form-control floating", @placeholder = "Department Code" })
+                        @Html.ValidationMessageFor(m => m.DepartmentName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Last Name</label>
+                        @Html.TextBoxFor(m => m.DepartmentName, "", new { @class = "form-control floating", @placeholder = "Department Name" })
+                        @Html.ValidationMessageFor(m => m.DepartmentName, "", new { @class = "text-danger" })
+                    </div>
+                </div>              
+            </div>
+            <div class="m-t-20 text-center">
+                <button class="btn btn-primary">Save Changes</button>
+            </div>
+        }
+    </div>
+</div>

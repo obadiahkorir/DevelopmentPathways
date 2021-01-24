@@ -1,0 +1,58 @@
+﻿@model IEnumerable<DevelopmentPathWays.Models.UsersModel>
+@{
+    ViewBag.Title = "UsersList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content container-fluid">
+    <div class="row">
+        <div class="col-xs-4">
+            <h4 class="page-title">Users Management</h4>
+        </div>
+        <div class="col-xs-8 text-right m-b-30">
+            <a href="/Home/AddNewUser" class="btn btn-primary pull-right rounded"><i class="fa fa-plus"></i> Add New User</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-striped custom-table datatable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email Address</th>
+                            <th>First Name</th>
+                            <th>Middle Name</th>
+                            <th>Last Name</th>
+                            <th>Country Name</th>
+                            <th>County Name</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       @foreach ( var item in Model)
+                       {
+                        <tr>
+                            <td>@item.UserName</td>
+                            <td>@item.EmailAddress</td>
+                            <td>@item.FirstName</td>
+                            <td>@item.MiddleName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.Country</td>
+                            <td>@item.County</td>
+                            <td>
+                              <a href="@Url.Action("Edit", "Home", new { id = @item.Userid })" class="btn btn-success" )"><i class="fa fa-pencil"></i> Edit</a>
+                            <td>
+                              <a href="@Url.Action("Delete", "Home", new { id = @item.Userid }))" class="btn btn-success" )"><i class="fa fa-trash m-r-10"></i> Delete</a>
+                            </td>
+                        </tr>
+                       }
+                            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

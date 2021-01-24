@@ -1,0 +1,134 @@
+﻿@using DevelopmentPathWays.Models
+@model UsersModel
+@{
+    ViewBag.Title = "AddNewUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content container-fluid">
+    <div class="modal-body">
+        @if (TempData["error"] != null)
+        {
+
+            <div class="alert alert-danger" id="alert-success" role="alert">
+                @TempData["error"]
+            </div>
+
+        }
+        else if (TempData["success"] != null)
+        {
+            <div class="alert alert-success" id="alert-success" role="alert">
+                @TempData["success"]
+            </div>
+        }
+        <div class="row">
+            @using (Html.BeginForm("AddNewUser", "Home", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">UserName: <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.UserName, "", new { @class = "form-control floating", @placeholder = "UserName" })
+                            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Surname: <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.LastName, "", new { @class = "form-control floating", @placeholder = "LastName" })
+                            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Firstname: <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.FirstName, "", new { @class = "form-control floating", @placeholder = "FirstName" })
+                            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Other Names: <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.MiddleName, "", new { @class = "form-control floating", @placeholder = "Other Names" })
+                            @Html.ValidationMessageFor(m => m.MiddleName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Password: <span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.Password, "", new { @class = "form-control floating", @placeholder = "Password" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "badge badge-danger" })
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Confirm Password: <span class="text-danger">*</span></label>
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confim Password" })
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">County : <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.County, "", new { @class = "form-control floating", @placeholder = "County" })
+                            @Html.ValidationMessageFor(m => m.County, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Country: <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.Country, "", new { @class = "form-control floating", @placeholder = "Country" })
+                            @Html.ValidationMessageFor(m => m.Country, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Primary Email Address : <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.EmailAddress, "", new { @class = "form-control floating", @placeholder = "Email Address" })
+                            @Html.ValidationMessageFor(m => m.EmailAddress, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Post Codes : <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.PostCode, "", new { @class = "form-control floating", @placeholder = "Post Codes" })
+                            @Html.ValidationMessageFor(m => m.PostCode, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Address : <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.Address, "", new { @class = "form-control floating", @placeholder = "Address" })
+                            @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="m-t-20 text-center">
+                            <button class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            }
+            </div>
+            
+        </div>
+    </div>
